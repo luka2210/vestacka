@@ -1,0 +1,39 @@
+[System]
+Name='AirConditioner'
+Type='mamdani'
+Version=2.0
+NumInputs=1
+NumOutputs=1
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='temp'
+Range=[0 30]
+NumMFs=5
+MF1='COLD':'trimf',[0 0 3]
+MF2='COOL':'trimf',[0 12.5 17.5]
+MF3='HOT':'trimf',[25 30 30]
+MF4='PLEASANT':'trimf',[15 17.5 20]
+MF5='WARM':'trimf',[17.5 22 27.5]
+
+[Output1]
+Name='speed'
+Range=[0 100]
+NumMFs=5
+MF1='MINIMAL':'trimf',[0 0 30]
+MF2='MEDIUM':'trimf',[40 50 60]
+MF3='BLAST':'trimf',[70 100 100]
+MF4='SLOW':'trimf',[10 30 50]
+MF5='FAST':'trimf',[50 70 90]
+
+[Rules]
+1, 1 (1) : 1
+2, 4 (1) : 1
+4, 2 (1) : 1
+5, 5 (1) : 1
+3, 3 (1) : 1

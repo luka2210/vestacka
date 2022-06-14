@@ -1,0 +1,41 @@
+[System]
+Name='PC'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='CPU'
+Range=[0 3.5]
+NumMFs=3
+MF1='slow':'trimf',[-1.4 0 1.7]
+MF2='average':'trimf',[1 2 2.5]
+MF3='fast':'trimf',[2 3.5 5]
+
+[Input2]
+Name='HDD'
+Range=[0 2000]
+NumMFs=3
+MF1='small':'trimf',[-800 0 1200]
+MF2='average':'trimf',[0 1200 1500]
+MF3='large':'trimf',[1200 2000 2800]
+
+[Output1]
+Name='quality'
+Range=[0 100]
+NumMFs=3
+MF1='bad':'trimf',[-40 0 40]
+MF2='average':'trimf',[10 50 90]
+MF3='excellent':'trimf',[60 100 140]
+
+[Rules]
+3 3, 3 (1) : 1
+1 1, 1 (1) : 2
+2 2, 2 (1) : 2

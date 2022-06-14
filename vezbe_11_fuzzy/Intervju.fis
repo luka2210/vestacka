@@ -1,0 +1,55 @@
+[System]
+Name='intervju'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=8
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='ProsekOcena'
+Range=[6 10]
+NumMFs=4
+MF1='Niska':'trimf',[6 6 7.5]
+MF2='Srednja':'trimf',[7 8 8.5]
+MF3='Visoka':'trimf',[8 8.7 10]
+MF4='VrloVisoka':'trimf',[9 10 10]
+
+[Input2]
+Name='RadnoIskustvo'
+Range=[0 40]
+NumMFs=2
+MF1='Kratko':'trimf',[0 0 10]
+MF2='Dugo':'trapmf',[2 18 40 40]
+
+[Input3]
+Name='Intervju'
+Range=[0 10]
+NumMFs=3
+MF1='Los':'zmf',[0.5 5]
+MF2='Osrednji':'gaussmf',[1.7 5]
+MF3='Odlican':'smf',[5 9.5]
+
+[Output1]
+Name='KonacnaOcena'
+Range=[0 1]
+NumMFs=4
+MF1='NePreporucujem':'trimf',[0 0 0.4]
+MF2='OsrednjiUtisak':'gbellmf',[0.14 2.5 0.39]
+MF3='IzuzetanKandidat':'smf',[0.58 0.84]
+MF4='Preporucujem':'gbellmf',[0.11 2.3 0.63]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 1 2, 2 (1) : 1
+1 1 3, 4 (1) : 1
+2 1 1, 1 (1) : 1
+2 1 3, 4 (1) : 1
+4 1 3, 4 (1) : 1
+3 2 2, 4 (1) : 1
+3 2 3, 3 (1) : 1
